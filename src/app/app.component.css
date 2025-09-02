@@ -1,0 +1,180 @@
+/* app.component.css */
+
+select {
+  margin-top:-38px;
+  margin-right: 5px;
+  float: right;
+  height: 19px;
+  font-size: 13px;
+  border-radius: 11px;
+  position: absolute;
+  margin-left: 88%;
+}
+
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 2000;
+}
+
+.splash-title {
+  font-size: 48px;
+  color: blue;
+  text-align: center;
+  animation: moveToTopLeft 2s forwards;
+  position: absolute;
+}
+
+@keyframes moveToTopLeft {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+  }
+  100% {
+    top: 10px;
+    left: 10px;
+    transform: translate(0, 0);
+    font-size: 24px;
+  }
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lavender;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .company-info {
+  flex: 1;
+}
+
+nav .company-info h1 {
+  margin: 0;
+  font-size: 42px;
+  color: blue;
+}
+
+.company-info img.company-logo {
+  width: 22%;
+  height: auto;
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin-right: 1%;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  display: block;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #9babeb45;
+  color: #333;
+}
+
+.social-media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  padding: 8px;
+  margin-bottom: -34px;
+  margin-right: 6px;
+}
+
+.social-media a img {
+   width: 30px; /* adjust size as needed */
+  height: 30px;
+  border-radius: 50%; /* make it circular */
+  object-fit: cover; /* ensures image fits inside circle */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-media a img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.company-info, ul, .social-media {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: aliceblue; /* Light background color for welcome screen */
+}
+
+
+.about-us-container{
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: navajowhite;
+}
+
+.web-services-container{
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: lightblue;
+}
+
+.partners-container{
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: rgb(64, 166, 197);
+}
+
+.contact-us-container{
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  background-color: rgb(88, 221, 226);
+}
+
+

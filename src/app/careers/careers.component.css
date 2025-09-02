@@ -1,0 +1,130 @@
+.careers {
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px;
+}
+
+.job-listing {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.job-listing h3 {
+  margin-top: 0;
+}
+
+.job-listing p {
+  margin: 10px 0;
+}
+
+.job-listing p strong {
+  display: inline-block;
+  width: 120px; /* Adjust this value as needed */
+}
+
+.job-listing a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.job-listing a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+/* Styles for the job application form popup */
+.job-application-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 700px; /* Adjust maximum width as needed */
+  height: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+.job-application-form h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.job-application-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.job-application-form .form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.job-application-form input,
+.job-application-form select,
+.job-application-form textarea {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.job-application-form .full-width {
+  grid-column: span 2;
+}
+
+.job-application-form .submit-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.job-application-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.job-application-form button:last-child {
+  background-color: #dc3545;
+  margin-left: 10px;
+}
+
+.job-application-form button:hover {
+  opacity: 0.8;
+}
+
+.job-application-form form {
+  margin: 0;
+}
+
+.job-application-form label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
