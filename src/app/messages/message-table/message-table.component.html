@@ -1,0 +1,79 @@
+<table class="message-table" *ngIf="messages.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Messages</th>
+
+      <th>Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mes of messages; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ mes.name }}</td>
+      <td>{{ mes.email }}</td>
+      <td>{{ mes.phone }}</td>
+      <td>{{ mes.message }}</td>
+
+<td class="action-cell">
+  <div class="menu-trigger" (click)="toggleMenu(i, $event)">
+    &#x22EE;
+  </div>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  *ngIf="activeMenuIndex !== null"
+  class="popup-menu"
+  [ngStyle]="{ top: menuPosition.top + 'px', left: menuPosition.left + 'px' }"
+  (click)="$event.stopPropagation()"
+>
+  <ul>
+    <li (click)="showMore(messages[activeMenuIndex])">Show More</li>
+    <li (click)="deleteMessage(messages[activeMenuIndex])">Delete</li>
+  </ul>
+</div>
+
+<div class="modal-backdrop" *ngIf="showDeletePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <span class="close-btn" (click)="cancelDelete()">&#10006;</span>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong>{{ messageToDelete?.name }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+      <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- Show More Modal -->
+<div class="modal-backdrop" *ngIf="showMorePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>User Details</h3>
+      <span class="close-btn" (click)="closeShowMorePopup()">&#10006;</span>
+    </div>
+    <div class="modal-body details-popup">
+      <p><strong>Name:</strong> {{ selectedMessage?.name }}</p>
+      <p><strong>Email:</strong> {{ selectedMessage?.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedMessage?.phone }}</p>
+      <p><strong>Message:</strong> {{ selectedMessage?.message }}</p>
+      <!-- Add more fields here if needed -->
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noData>
+  <p>No messages found.</p>
+</ng-template>

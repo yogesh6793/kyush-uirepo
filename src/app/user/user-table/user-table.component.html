@@ -1,0 +1,88 @@
+<table class="user-table" *ngIf="users.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Status</th>
+
+      <th>Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.roleName }}</td>
+
+      <td>
+      <label class="switch">
+        <input type="checkbox" [checked]="user.status" (change)="toggleStatus(user)" />
+        <span class="slider round"></span>
+      </label>
+    </td>
+
+<td class="action-cell">
+  <div class="menu-trigger" (click)="toggleMenu(i, $event)">
+    &#x22EE;
+  </div>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  *ngIf="activeMenuIndex !== null"
+  class="popup-menu"
+  [ngStyle]="{ top: menuPosition.top + 'px', left: menuPosition.left + 'px' }"
+  (click)="$event.stopPropagation()"
+>
+  <ul>
+    <li (click)="showMore(users[activeMenuIndex])">Show More</li>
+    <li (click)="editUser(users[activeMenuIndex])">Edit</li>
+    <li (click)="deleteUser(users[activeMenuIndex])">Delete</li>
+  </ul>
+</div>
+
+<div class="modal-backdrop" *ngIf="showDeletePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <span class="close-btn" (click)="cancelDelete()">&#10006;</span>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong>{{ userToDelete?.firstName }} {{ userToDelete?.lastName }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+      <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showMorePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>User Details</h3>
+      <span class="close-btn" (click)="closeShowMorePopup()">&#10006;</span>
+    </div>
+    <div class="modal-body details-popup">
+      <p><strong>Name:</strong> {{ selectedUser?.firstName }} {{ selectedUser?.lastName }}</p>
+      <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedUser?.phone }}</p>
+      <p><strong>Role:</strong> {{ selectedUser?.roleName }}</p>
+      <p><strong>Status:</strong> {{ selectedUser?.status ? 'Active' : 'Inactive' }}</p>
+      <p><strong>Created On:</strong> {{ selectedUser?.createdAt | date }}</p>
+      <!-- Add more fields here if needed -->
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <p>No users found.</p>
+</ng-template>

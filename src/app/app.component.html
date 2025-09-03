@@ -1,0 +1,66 @@
+<!-- <div id="splash-screen" class="splash-screen">
+  <h1 id="splash-title" class="splash-title">KYush-IT Solutions</h1>
+</div> -->
+
+
+<nav>
+
+  <select [(ngModel)]="selectedOption" (change)="onOptionSelected()">
+  <option value="" selected>Quick Links</option>
+  <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+</select>
+
+  
+  <div class="company-info">
+    <a href="/">
+      <img src="assets/companylogo.jpeg" alt="Company Logo" class="company-logo">
+    </a>
+    
+  <!-- <h1>
+    <a href="/" style="text-decoration: none; color: inherit;">
+    KYush-IT Solutions
+    </a>
+  </h1> -->
+  </div>
+  <ul>
+    <li><a routerLink="/" (click)="scrollToElement('home')">Home</a></li>
+    <li><a routerLink="/" (click)="scrollToElement('about-us')">About Us</a></li>
+    <li><a routerLink="/" (click)="scrollToElement('web-services')">Services</a></li>
+    <li><a routerLink="/" (click)="scrollToElement('web-partners')">Partners</a></li>
+    <li><a routerLink="/careers">Careers</a></li>
+
+    <li><a routerLink="/" (click)="scrollToElement('contact-us')">Contact Us</a></li>
+  </ul>
+  
+  <div class="social-media">
+    <a href="https://www.twitter.com" target="_blank"><img src="assets/twitter.ico" alt="Twitter"></a>
+    <a href="https://www.linkedin.com" target="_blank"><img src="assets/linkedin.ico" alt="LinkedIn"></a>
+    <a href="https://www.instagram.com" target="_blank"><img src="assets/instagram.ico" alt="Instagram"></a>
+  </div>
+
+  
+
+</nav>
+
+<section  *ngIf="currentRoute === '/' || currentRoute === '/home'" id="home" class="welcome-container">
+  <app-home></app-home>
+</section>
+
+<section *ngIf="currentRoute === '/' || currentRoute === '/home'" id="about-us" class="about-us-container">
+  <app-about-us></app-about-us>
+</section>
+
+<section *ngIf="currentRoute === '/' || currentRoute === '/home'" id="web-services" class="web-services-container">
+  <app-web-services></app-web-services>
+</section>
+
+<section *ngIf="currentRoute === '/' || currentRoute === '/home'" id="web-partners" class="partners-container">
+  <app-web-partners></app-web-partners>
+</section>
+
+<section *ngIf="currentRoute === '/' || currentRoute === '/home'" id="contact-us" class="contact-us-container">
+  <app-contact-us></app-contact-us>
+</section>
+
+
+<router-outlet></router-outlet>

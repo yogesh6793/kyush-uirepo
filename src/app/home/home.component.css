@@ -1,0 +1,51 @@
+.welcome-content {
+  text-align: center;
+  margin-top: -1%;
+  animation: fadeInUp 1s ease-out;
+}
+
+.welcome-content h2 {
+  font-size: 48px;
+  margin-bottom: 100px;
+  color: #333; /* Dark text color */
+}
+
+.welcome-content p {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #555; /* Slightly darker text color */
+}
+
+.animated-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.animated-image {
+  width: 80%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 1.5s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,71 @@
+<div class="dashboard-container">
+  <h2>Welcome, {{ adminName }}</h2>
+  <button (click)="logout()">Logout</button>
+</div>
+
+<div class="dashboard-cards">
+  <div
+    class="card"
+    *ngFor="let card of cards"
+    [ngClass]="{ active: selectedCard === card }"
+    (click)="selectCard(card)"
+  >
+    {{ card }}
+  </div>
+</div>
+
+<!-- Dynamic Content Based on Card Selection -->
+<div class="card-content">
+  <ng-container [ngSwitch]="selectedCard">
+    <div *ngSwitchCase="'Dashboard'">
+      <h3>📊 Dashboard Overview</h3>
+      <p>Summary of all modules and system status.</p>
+      <div class="dashboard-frame-container">
+    <iframe
+      [src]="trustedDashboardUrl"
+      width="100%"
+      height="600px"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+    </div>
+
+    <div *ngSwitchCase="'User Management'">
+      <h3>👥 User Management</h3>
+      <p>Manage users, roles, and permissions here.</p>
+      <button style="margin-left: 80%;position: sticky;background-color: midnightblue;" (click)="toggleUserForm()">+ Create User</button>
+
+      <app-user-selector *ngIf="showUserForm" [user]="selectedUser" [roleList]="roleList" (formClosed)="toggleUserForm()" (userSaved)="handleUserSaved($event)"></app-user-selector>
+      <app-user-table [users]="userList" (edit)="editUser($event)" (delete)="deleteUser($event)" (toggleUserStatus)="toggleStatusFromParent($event)"></app-user-table>
+    </div>
+
+    <div *ngSwitchCase="'Reports'">
+      <h3>📈 Reports</h3>
+      <p>Access detailed reports and analytics.</p>
+    </div>
+
+    <div *ngSwitchCase="'System Settings'">
+      <h3>⚙️ System Settings</h3>
+      <p>Configure system preferences and parameters.</p>
+    </div>
+
+    <div *ngSwitchCase="'Messages'">
+      <h3>✉️ Messages</h3>
+      <p>View and send messages to users.</p>
+      <app-message-table [messages]="messageList" (delete)="deleteMessage($event)"></app-message-table>
+    </div>
+
+    <div *ngSwitchCase="'Job Application'">
+      <h3>✉️ Job Application</h3>
+      <p>View and Delete Job Application.</p>
+      <app-jobApplication-selector *ngIf="showJobApplicationForm" [jobStatusList]="jobStatusList" [jobApplication]="selectedJobApplication" (formClosed)="toggleJobApplicationForm()" (jobApplicationSaved)="handleJobApplicationSaved($event)"></app-jobApplication-selector>
+      <app-jobApplication-table [jobApplications]="jobApplicationList" (edit)="editJobApplication($event)" (delete)="deleteApplication($event)"></app-jobApplication-table>
+    </div>
+
+    <div *ngSwitchCase="'Logs'">
+      <h3>📝 Logs</h3>
+      <p>Review system logs and activity trails.</p>
+    </div>
+  </ng-container>
+</div>

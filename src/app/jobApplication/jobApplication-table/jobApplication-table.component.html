@@ -1,0 +1,92 @@
+<table class="jobApplication-table" *ngIf="jobApplications.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Applicant Name</th>
+      <th>Applicant Email</th>
+      <th>Job Applied</th>
+      <th>Phone</th>
+      <th>Applied On</th>
+      <th>LinkedIn</th>
+      <th>Job Status</th>
+
+      <th>Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let application of jobApplications; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ application.applicantName }}</td>
+      <td>{{ application.email }}</td>
+      <td>{{ application.jobBoardTitle }}</td>
+      <td>{{ application.phone }}</td>
+      <td>{{ application.jobAppliedOn }}</td>
+      <td>
+  <a [href]="application.linkedin" target="_blank" rel="noopener noreferrer">
+    {{ application.linkedin }}
+  </a>
+</td>
+      <td>{{ application.jobStatus }}</td>
+
+      <td class="action-cell">
+  <div class="menu-trigger" (click)="toggleMenu(i, $event)">
+    &#x22EE;
+  </div>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  *ngIf="activeMenuIndex !== null"
+  class="popup-menu"
+  [ngStyle]="{ top: menuPosition.top + 'px', left: menuPosition.left + 'px' }"
+  (click)="$event.stopPropagation()"
+>
+  <ul>
+    <li (click)="showMore(jobApplications[activeMenuIndex])">Show More</li>
+    <li (click)="editJobApplication(jobApplications[activeMenuIndex])">Edit</li>
+    <li (click)="deleteJobApplication(jobApplications[activeMenuIndex])">Delete</li>
+  </ul>
+</div>
+
+<div class="modal-backdrop" *ngIf="showDeletePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <span class="close-btn" (click)="cancelDelete()">&#10006;</span>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong>{{ applicationToDelete?.applicantName }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+      <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- Show More Modal -->
+<div class="modal-backdrop" *ngIf="showMorePopup">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>User Details</h3>
+      <span class="close-btn" (click)="closeShowMorePopup()">&#10006;</span>
+    </div>
+    <div class="modal-body details-popup">
+      <p><strong>Name:</strong> {{ selectedJobApplication?.applicantName }}</p>
+      <p><strong>Email:</strong> {{ selectedJobApplication?.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedJobApplication?.phone }}</p>
+      <p><strong>Job Board Title:</strong> {{ selectedJobApplication?.jobBoardTitle }}</p>
+      <p><strong>Status:</strong> {{ selectedJobApplication?.status ? 'Active' : 'Inactive' }}</p>
+      <p><strong>Created On:</strong> {{ selectedJobApplication?.jobAppliedOn | date }}</p>
+      <!-- Add more fields here if needed -->
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noData>
+  <p>No job application found.</p>
+</ng-template>
