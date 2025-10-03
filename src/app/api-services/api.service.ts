@@ -11,12 +11,12 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   authenticate(loginCredentialForm: any) {
-    return this.http.post(`${environment.baseUrl}/users/authenticate`, loginCredentialForm, { headers: new HttpHeaders() });
+    return this.http.post(`${environment.baseUrl}/users/authenticate`, loginCredentialForm);
   }
 
   // 📬 Contact
   sendEmail(body: any) {
-    return this.http.post(`${environment.baseUrl}/contact/sendMessage`, body, { headers: new HttpHeaders() });
+    return this.http.post(`${environment.baseUrl}/contact/sendMessage`, body);
   }
 
   getMessageList() {
@@ -50,7 +50,7 @@ export class ApiService {
   }
 
   getJobList() {
-    return this.http.get(`${environment.baseUrl}/job/getJobs`, { headers: new HttpHeaders() });
+    return this.http.get(`${environment.baseUrl}/job/getJobs`);
   }
 
   sendJobApplication(form: any, file: any) {
