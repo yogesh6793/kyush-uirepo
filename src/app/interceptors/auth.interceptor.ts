@@ -18,6 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
     let modifiedReq = req;
 
+    if (
+      modifiedReq.url.includes('/users/authenticate') ||
+      modifiedReq.url.includes('/contact/sendMessage') ||
+      modifiedReq.url.includes('/job/getJobs')
+    ) {
+      return next.handle(modifiedReq);
+    }
+
     // Add Authorization header if token exists
     if (token) {
       modifiedReq = modifiedReq.clone({
@@ -31,3 +39,4 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(modifiedReq);
   }
 }
+
